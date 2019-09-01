@@ -6,6 +6,7 @@ import com.pruebaitau.demo.adapter.specific.api.IServiciosApiCliente;
 import com.pruebaitau.demo.adapter.specific.infrastructure.EndpointConfig;
 import com.pruebaitau.demo.commons.domains.generic.ItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -43,6 +44,9 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
             HashMap<String, String> authHeader = new HashMap<>();
             authHeader.put("Accept", MediaType.APPLICATION_JSON_VALUE);
             authHeader.put("Content-type", MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,  MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS,  MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS,  MediaType.APPLICATION_JSON_VALUE);
             ResponseEntity<String> responseEntity = endpointConsumerClient(url, String.class, HttpMethod.GET,authHeader);
 
             return ResponseEntity.ok(responseEntity.getBody());
