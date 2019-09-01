@@ -30,7 +30,7 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
     }
 
     @Override
-    public ResponseEntity viewTodosConsume(int id, String title) {
+    public ResponseEntity viewTodosConsume(String id, String title) {
         String url;
         if (!ObjectUtils.isEmpty(id) && !StringUtils.isEmpty(title)) {
             url = "https://jsonplaceholder.typicode.com/todos?id="+id+"&title="+title;

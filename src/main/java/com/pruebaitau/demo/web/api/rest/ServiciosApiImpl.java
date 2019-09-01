@@ -21,7 +21,7 @@ public class ServiciosApiImpl implements IServiciosApi{
 
     @Override
     @GetMapping(EndPointServiciosApi.GET_ALL_TODOS)
-    public ResponseEntity viewTodos(@RequestParam(required = false) int id, @RequestParam(required = false) String title) {
+    public ResponseEntity viewTodos(@RequestParam(required = false) String id, @RequestParam(required = false) String title) {
         return iServiciosApiCliente.viewTodosConsume(id,title);
     }
 

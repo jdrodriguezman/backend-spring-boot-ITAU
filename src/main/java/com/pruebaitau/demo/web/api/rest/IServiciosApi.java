@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 
 public interface IServiciosApi {
 
-    ResponseEntity viewTodos(int id, String title);
+    ResponseEntity viewTodos(String id, String title);
     ResponseEntity viewListItems();
     ResponseEntity createItem(ItemDTO item);
     ResponseEntity editItem(String registro,ItemDTO item);
