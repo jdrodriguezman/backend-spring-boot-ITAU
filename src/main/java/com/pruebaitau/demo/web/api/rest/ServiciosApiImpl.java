@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(EndPointServiciosApi.ENDPOINT_BASE)
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ServiciosApiImpl implements IServiciosApi{
 
 

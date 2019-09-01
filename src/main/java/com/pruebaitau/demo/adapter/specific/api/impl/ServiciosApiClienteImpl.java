@@ -42,8 +42,8 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
         }
         try {
             HashMap<String, String> authHeader = new HashMap<>();
-            authHeader.put("Accept", MediaType.APPLICATION_JSON_VALUE);
-            authHeader.put("Content-type", MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
             authHeader.put(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN,  MediaType.APPLICATION_JSON_VALUE);
             authHeader.put(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS,  MediaType.APPLICATION_JSON_VALUE);
             authHeader.put(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS,  MediaType.APPLICATION_JSON_VALUE);
@@ -64,8 +64,8 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
         try {
             String url = "https://my-project-itau.firebaseio.com/content.json";
             HashMap<String, String> authHeader = new HashMap<>();
-            authHeader.put("Accept", MediaType.APPLICATION_JSON_VALUE);
-            authHeader.put("Content-type", MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
             ResponseEntity<String> responseEntity = endpointConsumerClient(url, String.class, HttpMethod.GET,authHeader);
 
             return ResponseEntity.ok(responseEntity.getBody());
@@ -86,8 +86,8 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
         try {
             String url = "https://my-project-itau.firebaseio.com/content.json";
             HashMap<String, String> authHeader = new HashMap<>();
-            authHeader.put("Accept", MediaType.APPLICATION_JSON_VALUE);
-            authHeader.put("Content-type", MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
             ResponseEntity<String> responseEntity = endpointConsumerClient(url, String.class, HttpMethod.POST, new Gson().toJson(item), authHeader);
 
             return ResponseEntity.ok(responseEntity.getBody());
@@ -105,8 +105,8 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
         try {
             String url = "https://my-project-itau.firebaseio.com/content/"+ registro+".json";
             HashMap<String, String> authHeader = new HashMap<>();
-            authHeader.put("Accept", MediaType.APPLICATION_JSON_VALUE);
-            authHeader.put("Content-type", MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
             ResponseEntity<String> responseEntity = endpointConsumerClient(url, String.class, HttpMethod.PUT, new Gson().toJson(item), authHeader);
 
             return ResponseEntity.ok(responseEntity.getBody());
@@ -124,8 +124,8 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
         try {
             String url = "https://my-project-itau.firebaseio.com/content/"+ registro+".json";
             HashMap<String, String> authHeader = new HashMap<>();
-            authHeader.put("Accept", MediaType.APPLICATION_JSON_VALUE);
-            authHeader.put("Content-type", MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+            authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
             ResponseEntity<String> responseEntity = endpointConsumerClient(url, String.class, HttpMethod.DELETE,authHeader);
 
             return ResponseEntity.ok(responseEntity.getBody());
