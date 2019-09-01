@@ -12,7 +12,9 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Map;
 
 @Component
 public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements IServiciosApiCliente {
@@ -116,7 +118,8 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
     @Override
     public ResponseEntity editItemConsume(String registro, ItemDTO item) {
         try {
-            String url = "https://my-project-itau.firebaseio.com/content/"+ registro+".json";
+            String id = getRegitro(registro);
+            String url = "https://my-project-itau.firebaseio.com/content/"+ id+".json";
             HashMap<String, String> authHeader = new HashMap<>();
             authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
             authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
@@ -137,7 +140,8 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
     @Override
     public ResponseEntity deleteItemConsume(String registro) {
         try {
-            String url = "https://my-project-itau.firebaseio.com/content/"+ registro+".json";
+            String id = getRegitro(registro);
+            String url = "https://my-project-itau.firebaseio.com/content/"+ id+".json";
             HashMap<String, String> authHeader = new HashMap<>();
             authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
             authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
@@ -153,6 +157,16 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                     .body(e.getMessage());
         }
+    }
+
+    public String getRegitro(String registro){
+        ResponseEntity<String> response  = viewListItemsConsume(registro,"");
+        Map<String, Object> map = new Gson().fromJson(response.getBody(), Map.class);
+        String id = "";
+        for(String key : map.keySet()) {
+            id = key;
+        }
+        return id;
     }
 
 }
