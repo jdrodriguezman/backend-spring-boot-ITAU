@@ -6,10 +6,7 @@ import com.pruebaitau.demo.adapter.specific.api.IServiciosApiCliente;
 import com.pruebaitau.demo.adapter.specific.infrastructure.EndpointConfig;
 import com.pruebaitau.demo.commons.domains.generic.ItemDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
@@ -93,10 +90,12 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
             return ResponseEntity.ok(responseEntity.getBody());
         }
         catch (HttpClientErrorException e) {
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
         catch (Exception e){
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
     }
 
@@ -112,10 +111,12 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
             return ResponseEntity.ok(responseEntity.getBody());
         }
         catch (HttpClientErrorException e) {
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
         catch (Exception e){
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
     }
 
