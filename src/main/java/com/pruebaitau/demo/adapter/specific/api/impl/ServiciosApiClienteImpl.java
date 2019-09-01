@@ -141,15 +141,18 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
 
     @Override
     public ResponseEntity deleteItemConsume(String registro) {
+        String id = getRegitro(registro);
+        if (StringUtils.isEmpty(id)){
+            return ResponseEntity.ok("null");
+        }
         try {
-            String id = getRegitro(registro);
+
             String url = "https://my-project-itau.firebaseio.com/content/"+ id+".json";
             HashMap<String, String> authHeader = new HashMap<>();
             authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
             authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
             ResponseEntity<String> responseEntity = endpointConsumerClient(url, String.class, HttpMethod.DELETE,authHeader);
-
-            return ResponseEntity.ok(responseEntity.getBody());
+            return ResponseEntity.ok("Ok");
         }
         catch (HttpClientErrorException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
