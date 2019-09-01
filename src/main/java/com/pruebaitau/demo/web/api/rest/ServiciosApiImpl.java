@@ -28,8 +28,8 @@ public class ServiciosApiImpl implements IServiciosApi{
 
     @Override
     @GetMapping(EndPointServiciosApi.GET_ALL_CONTENT_ITEM)
-    public ResponseEntity viewListItems() {
-        return iServiciosApiCliente.viewListItemsConsume();
+    public ResponseEntity viewListItems(@RequestParam(required = false) String id, @RequestParam(required = false) String title) {
+        return iServiciosApiCliente.viewListItemsConsume(id,title);
     }
 
     @Override

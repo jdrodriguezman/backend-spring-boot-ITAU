@@ -49,17 +49,26 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
             return ResponseEntity.ok(responseEntity.getBody());
         }
         catch (HttpClientErrorException e) {
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
         catch (Exception e){
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
     }
 
     @Override
-    public ResponseEntity viewListItemsConsume() {
+    public ResponseEntity viewListItemsConsume(String id, String title) {
+        String url;
+        if (!ObjectUtils.isEmpty(id) && StringUtils.isEmpty(title)){
+            url = "https://my-project-itau.firebaseio.com/content.json?orderBy=%22id%22&equalTo=%22"+id+"%22&print=pretty";
+        }else if (!StringUtils.isEmpty(title) && ObjectUtils.isEmpty(id)){
+            url = "https://my-project-itau.firebaseio.com/content.json?orderBy=%22title%22&equalTo=%22"+title+"%22&print=pretty";
+        }else{
+            url = "https://my-project-itau.firebaseio.com/content.json";
+        }
         try {
-            String url = "https://my-project-itau.firebaseio.com/content.json";
             HashMap<String, String> authHeader = new HashMap<>();
             authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
             authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
@@ -68,10 +77,12 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
             return ResponseEntity.ok(responseEntity.getBody());
         }
         catch (HttpClientErrorException e) {
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
         catch (Exception e){
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
     }
 
@@ -132,10 +143,12 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
             return ResponseEntity.ok(responseEntity.getBody());
         }
         catch (HttpClientErrorException e) {
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
         catch (Exception e){
-            return null;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                    .body(e.getMessage());
         }
     }
 

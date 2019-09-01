@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 public interface IServiciosApiCliente {
 
     ResponseEntity viewTodosConsume(String id, String title);
-    ResponseEntity viewListItemsConsume();
+    ResponseEntity viewListItemsConsume(String id, String title);
     ResponseEntity createItemConsume(ItemDTO item);
     ResponseEntity editItemConsume(String registro,ItemDTO item);
     ResponseEntity deleteItemConsume(String registro);
