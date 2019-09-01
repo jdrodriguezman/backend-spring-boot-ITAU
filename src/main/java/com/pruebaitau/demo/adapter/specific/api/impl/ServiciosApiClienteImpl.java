@@ -60,31 +60,34 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
 
     @Override
     public ResponseEntity viewListItemsConsume(String id, String title) {
-        String url;
-        if (!ObjectUtils.isEmpty(id) && StringUtils.isEmpty(title)){
-            url = "https://my-project-itau.firebaseio.com/content.json?orderBy=id&equalTo="+id+"&print=pretty";
-        }else if (!StringUtils.isEmpty(title) && ObjectUtils.isEmpty(id)){
-            url = "https://my-project-itau.firebaseio.com/content.json?orderBy=title&equalTo="+title+"&print=pretty";
-        }else{
-            url = "https://my-project-itau.firebaseio.com/content.json";
-        }
-        try {
-            HashMap<String, String> authHeader = new HashMap<>();
-            authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
-            authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-            ResponseEntity<String> responseEntity = endpointConsumerClient(url, String.class, HttpMethod.GET,authHeader);
 
-            return ResponseEntity.ok(responseEntity.getBody());
-        }
-        catch (HttpClientErrorException e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                    .body(e.getMessage());
-        }
-        catch (Exception e){
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
-                    .body(e.getMessage());
-        }
+            String url;
+            if (!ObjectUtils.isEmpty(id) && StringUtils.isEmpty(title)){
+                url = "https://my-project-itau.firebaseio.com/content.json?orderBy=\"id\"&equalTo=\""+id+"\"&print=pretty";
+            }else if (!StringUtils.isEmpty(title) && ObjectUtils.isEmpty(id)){
+                url = "https://my-project-itau.firebaseio.com/content.json?orderBy=\"title\"&equalTo=\""+title+"\"&print=pretty";
+            }else{
+                url = "https://my-project-itau.firebaseio.com/content.json";
+            }
+            try {
+                HashMap<String, String> authHeader = new HashMap<>();
+                authHeader.put(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+                authHeader.put(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+                ResponseEntity<String> responseEntity = endpointConsumerClient(url, String.class, HttpMethod.GET,authHeader);
+
+                return ResponseEntity.ok(responseEntity.getBody());
+            }
+            catch (HttpClientErrorException e) {
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                        .body(e.getMessage());
+            }
+            catch (Exception e){
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR.value())
+                        .body(e.getMessage());
+            }
+
     }
+
 
     @Override
     public ResponseEntity createItemConsume(ItemDTO item) {
