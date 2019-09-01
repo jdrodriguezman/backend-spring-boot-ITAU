@@ -13,13 +13,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.HashMap;
 
-
-@CrossOrigin(origins = "*", methods= {RequestMethod.GET,RequestMethod.POST})
 @Component
 public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements IServiciosApiCliente {
 

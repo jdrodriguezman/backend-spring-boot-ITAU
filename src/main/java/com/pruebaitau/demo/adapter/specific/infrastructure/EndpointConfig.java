@@ -21,6 +21,10 @@ public class EndpointConfig{
         HttpHeaders headers = new HttpHeaders();
         headers.set(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
         headers.set(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+        headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, MediaType.ALL_VALUE);
+        headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, MediaType.ALL_VALUE);
+        headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, MediaType.ALL_VALUE);
+        headers.set(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, MediaType.ALL_VALUE);
         return headers;
     }
 
