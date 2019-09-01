@@ -62,9 +62,9 @@ public class ServiciosApiClienteImpl extends EndpointManagerAbstract implements 
     public ResponseEntity viewListItemsConsume(String id, String title) {
         String url;
         if (!ObjectUtils.isEmpty(id) && StringUtils.isEmpty(title)){
-            url = "https://my-project-itau.firebaseio.com/content.json?orderBy=%22id%22&equalTo=%22"+id+"%22&print=pretty";
+            url = "https://my-project-itau.firebaseio.com/content.json?orderBy=id&equalTo="+id+"&print=pretty";
         }else if (!StringUtils.isEmpty(title) && ObjectUtils.isEmpty(id)){
-            url = "https://my-project-itau.firebaseio.com/content.json?orderBy=%22title%22&equalTo=%22"+title+"%22&print=pretty";
+            url = "https://my-project-itau.firebaseio.com/content.json?orderBy=title&equalTo="+title+"&print=pretty";
         }else{
             url = "https://my-project-itau.firebaseio.com/content.json";
         }
